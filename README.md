@@ -1,144 +1,108 @@
-# QUIZ WEBSITE - TECHNICAL SPECIFICATION
+# QUIZ PLATFORM – FUNCTIONAL SPECIFICATION & COMPENSATION PLAN
 
-## 1. PROJECT DESCRIPTION
+## 🔧 1. MÔ HÌNH TRIỂN KHAI THEO TÍNH NĂNG
 
-Nâng cấp nền tảng làm quiz hiện có (Google Apps Script + Google Sheet) thành một **nền tảng web chuyên nghiệp** phục vụ cho việc tạo đề, làm bài và chấm điểm, hỗ trợ người dùng tự động tạo câu hỏi bằng AI, quản lý lớp học, và tích hợp hệ thống thanh toán.
-
----
-
-## 2. CORE MODULES
-
-### 2.1 User Management
-- Đăng ký / Đăng nhập qua Google hoặc Email-Password
-- Phân loại người dùng: Guest, Free, Paid
-- Dashboard cá nhân, thông tin gói, lịch sử
-
-### 2.2 Quiz Management
-- CRUD quiz (tạo, sửa, xoá, cập nhật)
-- Phân loại quiz: công khai, riêng tư, miễn phí, trả phí
-- Hạn lưu trữ tuỳ theo loại tài khoản
-- Thống kê số lượt làm bài, điểm trung bình
-
-### 2.3 AI Quiz Generation
-- Nhập link tài liệu (Drive, YouTube, Web)
-- Phân loại nội dung, số lượng câu hỏi, độ khó
-- AI sinh câu hỏi trắc nghiệm dựa vào nội dung
-- Preview + chỉnh sửa nội dung quiz
-
-### 2.4 Quiz Taking & Result
-- Countdown timer, random câu hỏi
-- Gửi kết quả qua email
-- Hiển thị đáp án và thống kê
-
-### 2.5 Class & Group Management
-- Tài khoản trả phí tạo nhóm lớp học
-- Giao quiz theo lớp
-- Theo dõi kết quả học viên
-
-### 2.6 Payment Integration
-- Thanh toán gói: theo tháng/năm
-- Thanh toán từng bài quiz
-- Tự động gia hạn
-- Hỗ trợ Stripe / Momo / VNPAY
+Chúng tôi không tính lương theo giờ mà tính **theo từng tính năng cụ thể** với đầu ra rõ ràng. Dự án có thể trả:
+- **Option A**: Thanh toán ngay theo từng tính năng đã hoàn thành
+- **Option B**: Cùng đồng hành lâu dài, hưởng phần trăm doanh thu thực tế của hệ thống (ví dụ: 10–20%)
 
 ---
 
-## 3. TECH STACK
+## 📦 2. DANH SÁCH TÍNH NĂNG & DEAL LƯƠNG DỰ KIẾN
 
-| Layer      | Technology                          |
-|------------|--------------------------------------|
-| Frontend   | React.js + TailwindCSS (Next.js)     |
-| Backend    | Node.js + Express / NestJS           |
-| Auth       | Firebase Auth / Supabase             |
-| Database   | PostgreSQL / MongoDB (Cloud hosted)  |
-| AI Service | OpenAI / Claude API                  |
-| Storage    | Firebase / Supabase                  |
-| Payment    | Stripe, Momo, VNPAY                  |
-| Hosting    | Vercel (frontend), Railway (backend) |
+| Mã | Tính năng | Mô tả kỹ thuật | Giao diện | Mức độ | Giá đề xuất (VNĐ) |
+|----|-----------|----------------|-----------|--------|-------------------|
+| F1 | Đăng ký / Đăng nhập | OAuth Google + Email-Password, Firebase Auth / Supabase | Login / Register page | Trung bình | 800.000 |
+| F2 | Dashboard người dùng | Trang chủ cá nhân, hiển thị các quiz đã tạo / đã làm, loại tài khoản | Dashboard UI | Dễ | 500.000 |
+| F3 | Tạo & quản lý quiz | Form nhập quiz (title, tag, câu hỏi), lưu DB, phân loại public/private | Quiz form | Trung bình | 1.200.000 |
+| F4 | Làm quiz + chấm điểm | Giao diện làm bài, countdown, chọn đáp án, xử lý chấm điểm + lưu kết quả | Quiz play UI | Khá phức tạp | 1.500.000 |
+| F5 | Tích hợp AI tạo quiz | Gửi link tài liệu → AI backend của thầy Hùng → nhận JSON quiz | Form gửi + preview | Cao | 2.000.000 |
+| F6 | Tạo lớp học | Giao diện tạo lớp học, mời thành viên, giao quiz cho lớp | Class management | Trung bình | 1.200.000 |
+| F7 | Thống kê kết quả | Bảng điểm học viên, thống kê theo lớp / theo quiz | Result page | Trung bình | 1.000.000 |
+| F8 | Thanh toán + phân quyền | Tích hợp Stripe/Momo, phân loại free/paid, lưu hạn | Payment + logic backend | Trung bình | 1.200.000 |
+| F9 | Quản lý hệ thống (Admin) | Danh sách user, thống kê sử dụng, bật/tắt quiz, xoá user | Admin panel UI | Trung bình | 1.000.000 |
+| F10 | Email thông báo kết quả | Gửi email tự động sau khi làm quiz, dùng Resend / Brevo | No UI | Dễ | 500.000 |
 
----
-
-## 4. ESTIMATED INFRA COST (Monthly)
-
-| Hạng mục         | Chi phí dự kiến |
-|------------------|-----------------|
-| Hosting Frontend | Miễn phí (Vercel) |
-| Backend + DB     | $10–20          |
-| AI Calls         | $20–30          |
-| Email / Storage  | $5–10           |
-| Domain           | $1–2            |
-| Tổng cộng        | ~$30–60         |
+### 📌 Ghi chú:
+- Mỗi tính năng được **test và review** trước khi chốt thanh toán
+- Có thể chia nhỏ hơn nếu cần
+- Nếu chọn **Option B (doanh thu)**, nhóm sẽ giữ log tracking user upgrade để chia lợi nhuận công bằng
 
 ---
 
-## 5. FLOW DIAGRAM (MERMAID)
+## ⚙ 3. CHÍNH SÁCH HỢP TÁC (FREELANCER HOẶC ĐỒNG SÁNG LẬP)
+
+### Option A – Trả theo tính năng
+- Thanh toán qua MoMo / ngân hàng
+- Ứng trước theo từng cụm tính năng
+
+### Option B – Cổ phần / chia doanh thu
+- Cộng tác viên / dev nhận từ **10–20% doanh thu thực tế**
+- Có hợp đồng / giấy cam kết
+- Quy định rõ thời gian làm việc, trách nhiệm bảo trì, chia lợi nhuận mỗi quý/tháng
+
+---
+
+## 💡 4. CHIẾN LƯỢC KẾT HỢP
+
+| Chiến lược | Mô tả |
+|-----------|-------|
+| Giai đoạn đầu | Trả cứng theo từng tính năng, đảm bảo tiến độ |
+| Giai đoạn sau | Cộng tác lâu dài, nhận phần trăm khi nền tảng ra mắt chính thức |
+| Ưu tiên | Người hiểu hệ thống từ đầu sẽ có lợi thế bảo trì, scale & hưởng lợi nhuận |
+
+---
+
+## 🔍 5. GỢI Ý PHÁT TRIỂN LÂU DÀI
+
+- Web app → Mobile app
+- Tạo chứng chỉ / gamification
+- Đa ngôn ngữ
+- Mở mô hình SaaS cho giáo viên / trung tâm khác
+
+---
+
+## 📈 6. KPI & THÀNH QUẢ KỲ VỌNG
+
+| Chỉ số | Mục tiêu |
+|--------|----------|
+| Thời gian hoàn thành MVP | 6–8 tuần |
+| Người dùng đầu tiên | 1000 người |
+| Doanh thu tháng đầu | > 5 triệu VND |
+| Tỉ lệ trả phí | 10–15% người dùng free |
+
+---
+
+## 🧭 7. FLOW DỰ ÁN (MERMAID)
 
 ```mermaid
 flowchart TD
-    A[Người dùng truy cập trang chủ] --> B[Đăng ký / Đăng nhập]
-    B --> C[Truy cập Dashboard cá nhân]
-    C --> D[Tạo Quiz mới]
-    D --> E{Nguồn dữ liệu}
-    E -->|Google Drive| F1[Trích xuất nội dung]
-    E -->|YouTube| F2[Transcript video]
-    E -->|Link bài viết| F3[Thu thập & xử lý NLP]
-    
-    F1 --> G[Nhập metadata: chủ đề, số câu, độ khó]
-    F2 --> G
-    F3 --> G
+    A[Truy cập trang chủ] --> B[Đăng nhập / Đăng ký]
+    B --> C[Dashboard]
+    C --> D[Tạo quiz mới]
+    D --> E{Nguồn: Drive, YouTube, Web}
+    E --> F[AI Backend by Thầy Hùng]
+    F --> G[Hiển thị đề + preview]
+    G --> H[Lưu quiz]
 
-    G --> H[AI Backend tạo bộ câu hỏi]
-    H --> I[Preview & chỉnh sửa câu hỏi]
-    I --> J{Chế độ bài quiz}
-    J -->|Public| K1[Publish quiz công khai]
-    J -->|Private| K2[Lưu quiz cá nhân]
-    
-    K1 --> L1[Làm bài quiz]
-    K2 --> L2[Chia sẻ link riêng]
-    L1 --> M1[Chấm điểm + Gửi kết quả]
-    L2 --> M2[Chấm điểm + Gửi kết quả]
-
-    subgraph "Quản lý Quiz"
-        C --> QA1[Xem danh sách quiz]
-        QA1 --> QA2[Chỉnh sửa / Xoá]
-        QA1 --> QA3[Thống kê kết quả]
+    subgraph Làm quiz
+        I1[Bạn bè / học viên làm bài] --> I2[Chấm điểm + lưu kết quả]
+        I2 --> I3[Gửi email kết quả]
     end
 
-    subgraph "Tài khoản người dùng"
-        B --> U1[Guest: làm bài công khai]
-        B --> U2[Free: tạo 1 quiz, lưu 7 ngày]
-        B --> U3[Paid: tạo không giới hạn, nhóm học]
-        U3 --> G1[Tạo nhóm lớp học]
-        G1 --> G2[Mời học viên làm bài]
-        G2 --> G3[Theo dõi điểm theo nhóm]
+    subgraph Lớp học
+        J1[Người dùng trả phí] --> J2[Tạo nhóm lớp]
+        J2 --> J3[Giao bài quiz cho lớp]
+        J3 --> J4[Xem thống kê kết quả]
     end
 
-    subgraph "Thanh toán & gói dịch vụ"
-        U2 --> Pay1[Nâng cấp gói]
-        Pay1 --> Pay2[Thanh toán: Stripe / Momo / VNPAY]
-        Pay2 --> Pay3[Cập nhật quyền hạn người dùng]
+    subgraph Thanh toán
+        K1[Free user] --> K2[Nâng cấp gói]
+        K2 --> K3[Thanh toán Stripe/Momo]
+        K3 --> K4[Chuyển sang paid + unlock tính năng]
     end
 ```
 
 ---
 
-## 6. DEPLOYMENT ROADMAP
 
-| Giai đoạn | Tính năng chính                         | Thời gian   |
-|-----------|------------------------------------------|-------------|
-| Phase 1   | Đăng nhập, tạo quiz, lưu kết quả         | 2–3 tuần    |
-| Phase 2   | Tích hợp AI sinh đề, preview + publish   | 2–3 tuần    |
-| Phase 3   | Nhóm lớp học, thống kê theo nhóm         | 2 tuần      |
-| Phase 4   | Thanh toán, giới hạn gói, email          | 1–2 tuần    |
-| Tổng      | **8–10 tuần**                            |             |
-
----
-
-## 7. METRICS FOR SUCCESS
-
-- Quiz được tạo từ AI trong < 30 giây
-- Chi phí hạ tầng cho 1000 user < $60/tháng
-- 10–15% tỉ lệ chuyển đổi sang tài khoản trả phí
-- >30% người dùng quay lại dùng trong vòng 1 tháng
-
----
