@@ -139,16 +139,15 @@ flowchart TD
 
 ```mermaid
 graph TD
-    U[User Browser / Mobile] -->|HTTP/HTTPS| FE[Frontend (Next.js/React)]
-    FE -->|REST API| BE[Backend API (Node.js/Express)]
-    BE -->|SQL Queries| DB[Database (PostgreSQL/MongoDB)]
-    BE -->|API Call| AI[AI Backend (Python, local, by Thầy Hùng)]
-    BE -->|Payment API| PG[Payment Gateway (Stripe/Momo/VNPAY)]
-    FE -->|Asset Requests| ST[Storage (Supabase Storage/Cloudinary)]
-    BE -->|Email API| ES[Email Service (Resend/Brevo)]
+    U["User Browser / Mobile"] -->|"HTTP/HTTPS"| FE["Frontend (Next.js/React)"]
+    FE -->|"REST API"| BE["Backend API (Node.js/Express)"]
+    BE -->|"SQL Queries"| DB["Database (PostgreSQL/MongoDB)"]
+    BE -->|"API Call"| AI["AI Backend (Python, local, by Thầy Hùng)"]
+    BE -->|"Payment API"| PG["Payment Gateway (Stripe/Momo/VNPAY)"]
+    FE -->|"Asset Requests"| ST["Storage (Supabase Storage/Cloudinary)"]
+    BE -->|"Email API"| ES["Email Service (Resend/Brevo)"]
 ```
 
-*Chèn đoạn này sau phần "GỢI Ý PHÁT TRIỂN LÂU DÀI" và trước phần "SẴN SÀNG TRIỂN KHAI?"*
 
 ---
 
