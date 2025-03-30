@@ -1,108 +1,145 @@
 # QUIZ PLATFORM – FUNCTIONAL SPECIFICATION & COMPENSATION PLAN
 
-## 🔧 1. MÔ HÌNH TRIỂN KHAI THEO TÍNH NĂNG
+## 1. TỔNG QUAN DỰ ÁN
 
-Chúng tôi không tính lương theo giờ mà tính **theo từng tính năng cụ thể** với đầu ra rõ ràng. Dự án có thể trả:
-- **Option A**: Thanh toán ngay theo từng tính năng đã hoàn thành
-- **Option B**: Cùng đồng hành lâu dài, hưởng phần trăm doanh thu thực tế của hệ thống (ví dụ: 10–20%)
+Xây dựng nền tảng quiz chuyên nghiệp với các tính năng:
+- Tạo đề & làm bài
+- Quản lý nhóm lớp học
+- Tích hợp AI tạo câu hỏi từ tài liệu (thầy Hùng phụ trách AI backend, host nội bộ)
+- Hệ thống phân loại người dùng, thanh toán, lưu kết quả
+- Giao diện webapp responsive, tối giản, tinh gọn, hướng đến người dùng mobile
 
----
-
-## 📦 2. DANH SÁCH TÍNH NĂNG & DEAL LƯƠNG DỰ KIẾN
-
-| Mã | Tính năng | Mô tả kỹ thuật | Giao diện | Mức độ | Giá đề xuất (VNĐ) |
-|----|-----------|----------------|-----------|--------|-------------------|
-| F1 | Đăng ký / Đăng nhập | OAuth Google + Email-Password, Firebase Auth / Supabase | Login / Register page | Trung bình | 800.000 |
-| F2 | Dashboard người dùng | Trang chủ cá nhân, hiển thị các quiz đã tạo / đã làm, loại tài khoản | Dashboard UI | Dễ | 500.000 |
-| F3 | Tạo & quản lý quiz | Form nhập quiz (title, tag, câu hỏi), lưu DB, phân loại public/private | Quiz form | Trung bình | 1.200.000 |
-| F4 | Làm quiz + chấm điểm | Giao diện làm bài, countdown, chọn đáp án, xử lý chấm điểm + lưu kết quả | Quiz play UI | Khá phức tạp | 1.500.000 |
-| F5 | Tích hợp AI tạo quiz | Gửi link tài liệu → AI backend của thầy Hùng → nhận JSON quiz | Form gửi + preview | Cao | 2.000.000 |
-| F6 | Tạo lớp học | Giao diện tạo lớp học, mời thành viên, giao quiz cho lớp | Class management | Trung bình | 1.200.000 |
-| F7 | Thống kê kết quả | Bảng điểm học viên, thống kê theo lớp / theo quiz | Result page | Trung bình | 1.000.000 |
-| F8 | Thanh toán + phân quyền | Tích hợp Stripe/Momo, phân loại free/paid, lưu hạn | Payment + logic backend | Trung bình | 1.200.000 |
-| F9 | Quản lý hệ thống (Admin) | Danh sách user, thống kê sử dụng, bật/tắt quiz, xoá user | Admin panel UI | Trung bình | 1.000.000 |
-| F10 | Email thông báo kết quả | Gửi email tự động sau khi làm quiz, dùng Resend / Brevo | No UI | Dễ | 500.000 |
-
-### 📌 Ghi chú:
-- Mỗi tính năng được **test và review** trước khi chốt thanh toán
-- Có thể chia nhỏ hơn nếu cần
-- Nếu chọn **Option B (doanh thu)**, nhóm sẽ giữ log tracking user upgrade để chia lợi nhuận công bằng
+> 🤝 **Nhân sự chính**:
+> - **Minh**: Phát triển frontend, backend, giao diện người dùng  
+> - **Thầy Hùng**: Phụ trách AI backend (Python, host nội bộ)  
+> - **Cộng tác viên**: Được giao các chức năng cụ thể theo milestone
 
 ---
 
-## ⚙ 3. CHÍNH SÁCH HỢP TÁC (FREELANCER HOẶC ĐỒNG SÁNG LẬP)
+## 2. DANH SÁCH CHỨC NĂNG & CHI PHÍ THEO MODULE
 
-### Option A – Trả theo tính năng
-- Thanh toán qua MoMo / ngân hàng
-- Ứng trước theo từng cụm tính năng
-
-### Option B – Cổ phần / chia doanh thu
-- Cộng tác viên / dev nhận từ **10–20% doanh thu thực tế**
-- Có hợp đồng / giấy cam kết
-- Quy định rõ thời gian làm việc, trách nhiệm bảo trì, chia lợi nhuận mỗi quý/tháng
-
----
-
-## 💡 4. CHIẾN LƯỢC KẾT HỢP
-
-| Chiến lược | Mô tả |
-|-----------|-------|
-| Giai đoạn đầu | Trả cứng theo từng tính năng, đảm bảo tiến độ |
-| Giai đoạn sau | Cộng tác lâu dài, nhận phần trăm khi nền tảng ra mắt chính thức |
-| Ưu tiên | Người hiểu hệ thống từ đầu sẽ có lợi thế bảo trì, scale & hưởng lợi nhuận |
+| Mã  | Tính năng                  | Mô tả kỹ thuật                                      | Giao diện            | Độ phức tạp | Giá đề xuất (VNĐ) |
+|-----|----------------------------|-----------------------------------------------------|----------------------|-------------|-------------------|
+| F1  | Đăng ký / Đăng nhập        | Firebase Auth / Supabase                            | Login UI             | Trung bình  | 800.000           |
+| F2  | Dashboard người dùng       | Danh sách quiz đã tạo/làm, loại tài khoản           | UI đơn giản          | Dễ          | 500.000           |
+| F3  | Tạo & quản lý quiz         | CRUD quiz, lưu DB, publish/private                  | Quiz form UI         | Trung bình  | 1.200.000         |
+| F4  | Làm quiz + chấm điểm       | Countdown, chọn đáp án, chấm tự động                | Giao diện quiz       | Khá cao    | 1.500.000         |
+| F5  | Tích hợp AI quiz           | Nhận link → gửi thầy Hùng → render quiz             | Form + preview       | Cao         | 2.000.000         |
+| F6  | Quản lý lớp học            | Tạo nhóm, mời thành viên, gán quiz                  | UI lớp học           | Trung bình  | 1.200.000         |
+| F7  | Thống kê kết quả           | Theo quiz, theo lớp, hiển thị bảng điểm             | Bảng kết quả         | Trung bình  | 1.000.000         |
+| F8  | Thanh toán & phân quyền    | Stripe/Momo + quản lý gói Free/Paid                   | Form + logic         | Trung bình  | 1.200.000         |
+| F9  | Admin dashboard           | Quản lý người dùng, quiz, thống kê hệ thống         | UI quản trị          | Trung bình  | 1.000.000         |
+| F10 | Email thông báo kết quả    | Gửi mail tự động sau khi làm quiz (Resend/Brevo)     | Không cần UI         | Dễ          | 500.000           |
 
 ---
 
-## 🔍 5. GỢI Ý PHÁT TRIỂN LÂU DÀI
+## 3. MÔ HÌNH HỢP TÁC
 
-- Web app → Mobile app
-- Tạo chứng chỉ / gamification
-- Đa ngôn ngữ
-- Mở mô hình SaaS cho giáo viên / trung tâm khác
+### Option A – Trả theo từng chức năng (khuyến khích giai đoạn đầu)
+- Mỗi module được giao task riêng
+- Kiểm thử → nghiệm thu → thanh toán
 
----
-
-## 📈 6. KPI & THÀNH QUẢ KỲ VỌNG
-
-| Chỉ số | Mục tiêu |
-|--------|----------|
-| Thời gian hoàn thành MVP | 6–8 tuần |
-| Người dùng đầu tiên | 1000 người |
-| Doanh thu tháng đầu | > 5 triệu VND |
-| Tỉ lệ trả phí | 10–15% người dùng free |
+### Option B – Chia doanh thu thực tế
+- Sau khi đạt MVP/V1
+- Cộng tác viên nhận **10–20% doanh thu ròng hàng tháng**
+- Theo dõi và log việc nâng cấp tài khoản để chia minh bạch
 
 ---
 
-## 🧭 7. FLOW DỰ ÁN (MERMAID)
+## 4. KẾ HOẠCH THEO MILESTONE
+
+| Mốc | Chức năng chính      | Kết quả đầu ra                 | Thời gian    |
+|-----|----------------------|--------------------------------|--------------|
+| M1  | F1 + F2              | Auth + Dashboard               | 1 tuần       |
+| M2  | F3 + F4              | CRUD quiz + làm bài quiz       | 1–1.5 tuần   |
+| M3  | F5                   | Tích hợp AI: tạo đề quiz       | 1–1.5 tuần   |
+| M4  | F6 + F7              | Quản lý lớp học + thống kê      | 1 tuần       |
+| M5  | F8 + F9 + F10        | Thanh toán, admin, email       | 1–1.5 tuần   |
+
+---
+
+## 5. RỦI RO KỸ THUẬT & PHƯƠNG ÁN PHÒNG HỜ
+
+| Rủi ro                       | Mô tả                                                       | Giải pháp                                                  |
+|------------------------------|-------------------------------------------------------------|------------------------------------------------------------|
+| ⚠ API rate-limit             | Backend AI vượt quota khi nhiều người dùng                 | Giới hạn request/user, proxy queue, sử dụng cache nội bộ    |
+| ⚠ Quá tải server nội bộ      | AI backend (host local bởi Thầy Hùng) có thể bị timeout       | Triển khai thêm instance phụ trợ, xử lý batch, mở rộng server|
+| ⚠ Abuse tài khoản miễn phí   | Người dùng spam tạo quiz liên tục                            | Xác thực CAPTCHA, giới hạn theo IP, tăng cường kiểm tra role|
+| ⚠ Thất thoát dữ liệu         | Mất quiz do lỗi AI hoặc kết nối mạng                         | Lưu auto-draft, backup định kỳ                             |
+| ⚠ Quản lý file media nặng    | PDF, video lớn gây chậm hệ thống                             | Sử dụng Cloudinary/Google Drive cho lưu trữ file lớn         |
+| ⚠ Gửi email lỗi/spam         | Resend quota giới hạn, domain chưa verify                     | Cấu hình SPF/DKIM, dùng dịch vụ email uy tín, gửi theo lô    |
+
+---
+
+## 6. FLOW TOÀN BỘ DỰ ÁN (MERMAID)
 
 ```mermaid
 flowchart TD
-    A[Truy cập trang chủ] --> B[Đăng nhập / Đăng ký]
-    B --> C[Dashboard]
-    C --> D[Tạo quiz mới]
-    D --> E{Nguồn: Drive, YouTube, Web}
-    E --> F[AI Backend by Thầy Hùng]
-    F --> G[Hiển thị đề + preview]
-    G --> H[Lưu quiz]
+    A[Người dùng truy cập trang chủ] --> B[Đăng ký / Đăng nhập]
+    B --> C[Dashboard người dùng]
+    C --> D[Tạo quiz thủ công]
+    C --> E[Nhập link tài liệu / YouTube]
 
-    subgraph Làm quiz
-        I1[Bạn bè / học viên làm bài] --> I2[Chấm điểm + lưu kết quả]
-        I2 --> I3[Gửi email kết quả]
+    E --> F[Metadata + Submit tới AI backend]
+    F --> G[AI nội bộ (by Thầy Hùng)]
+    G --> H[Nhận câu hỏi + preview chỉnh sửa]
+    D --> H
+
+    H --> I[Publish / Lưu quiz]
+
+    subgraph Làm bài quiz
+        J1[Người dùng làm bài] --> J2[Countdown + Chọn đáp án]
+        J2 --> J3[Chấm điểm + Lưu kết quả]
+        J3 --> J4[Gửi email kết quả]
     end
 
-    subgraph Lớp học
-        J1[Người dùng trả phí] --> J2[Tạo nhóm lớp]
-        J2 --> J3[Giao bài quiz cho lớp]
-        J3 --> J4[Xem thống kê kết quả]
+    subgraph Nhóm học tập
+        K1[Paid User] --> K2[Tạo lớp học]
+        K2 --> K3[Mời học viên]
+        K3 --> K4[Giao bài quiz]
+        K4 --> K5[Theo dõi kết quả lớp]
     end
 
     subgraph Thanh toán
-        K1[Free user] --> K2[Nâng cấp gói]
-        K2 --> K3[Thanh toán Stripe/Momo]
-        K3 --> K4[Chuyển sang paid + unlock tính năng]
+        L1[Free User] --> L2[Nâng cấp gói]
+        L2 --> L3[Thanh toán qua Stripe/Momo]
+        L3 --> L4[Unlock tính năng]
+    end
+
+    subgraph Quản trị hệ thống
+        M1[Admin login] --> M2[Quản lý user & quiz]
+        M2 --> M3[Thống kê tổng thể]
     end
 ```
 
 ---
 
+## 7. TESTING & QUALITY ASSURANCE (QA)
 
+- **Responsive Design Testing**: Kiểm tra ứng dụng trên nhiều thiết bị (mobile, tablet, desktop) bằng các công cụ như BrowserStack.
+- **UI/UX Testing**: Đánh giá giao diện tối giản, tinh gọn, thân thiện với người dùng mobile; thu thập feedback từ nhóm thử nghiệm.
+- **Unit & Integration Testing**: Áp dụng các framework như Jest, React Testing Library cho frontend và Mocha/Chai cho backend.
+- **Performance Testing**: Thực hiện load testing đặc biệt cho AI backend và API; đánh giá khả năng xử lý đồng thời nhiều request.
+- **Security Testing**: Kiểm tra xác thực (JWT, Role-based access), bảo mật dữ liệu và phòng chống tấn công (SQL injection, XSS, CSRF).
+- **Risk Simulation Testing**: Mô phỏng các kịch bản rủi ro (quá tải server, API rate-limit, thất thoát dữ liệu) để đảm bảo hệ thống xử lý lỗi và phục hồi nhanh chóng.
+
+---
+
+## 8. GỢI Ý PHÁT TRIỂN LÂU DÀI
+
+- Phát triển **mobile app** (React Native/Flutter) để tối ưu trải nghiệm người dùng di động.
+- Tích hợp **LMS / Moodle API** mở rộng hệ thống giáo dục.
+- Tạo chứng chỉ tự động sau khi hoàn thành quiz.
+- Mở rộng mô hình SaaS cho các trường, trung tâm đào tạo.
+- Tích hợp AI scoring và phân tích dữ liệu học tập.
+
+---
+
+## 9. SẴN SÀNG TRIỂN KHAI?
+
+> Xác nhận các chức năng ưu tiên để triển khai ngay:  
+> - Chọn phương thức thanh toán: **Trả theo chức năng** hay **Chia doanh thu**.  
+> - Sắp xếp thứ tự ưu tiên dựa trên milestone.  
+> - Minh sẽ tổng hợp và tạo tài liệu hợp đồng, kanban công việc và tracking kết quả.
+
+---
