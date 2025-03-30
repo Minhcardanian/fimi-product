@@ -5,7 +5,7 @@
 Xây dựng nền tảng quiz chuyên nghiệp với các tính năng:
 - Tạo đề & làm bài
 - Quản lý nhóm lớp học
-- Tích hợp AI tạo câu hỏi từ tài liệu (thầy Hùng phụ trách AI backend, host nội bộ)
+- Tích hợp AI tạo câu hỏi từ tài liệu (Thầy Hùng phụ trách AI backend, host nội bộ)
 - Hệ thống phân loại người dùng, thanh toán, lưu kết quả
 - Giao diện webapp responsive, tối giản, tinh gọn, hướng đến người dùng mobile
 
@@ -24,7 +24,7 @@ Xây dựng nền tảng quiz chuyên nghiệp với các tính năng:
 | F2  | Dashboard người dùng       | Danh sách quiz đã tạo/làm, loại tài khoản           | UI đơn giản          | Dễ          | 500.000           |
 | F3  | Tạo & quản lý quiz         | CRUD quiz, lưu DB, publish/private                  | Quiz form UI         | Trung bình  | 1.200.000         |
 | F4  | Làm quiz + chấm điểm       | Countdown, chọn đáp án, chấm tự động                | Giao diện quiz       | Khá cao    | 1.500.000         |
-| F5  | Tích hợp AI quiz           | Nhận link → gửi thầy Hùng → render quiz             | Form + preview       | Cao         | 2.000.000         |
+| F5  | Tích hợp AI quiz           | Nhận link → gửi Thầy Hùng → render quiz             | Form + preview       | Cao         | 2.000.000         |
 | F6  | Quản lý lớp học            | Tạo nhóm, mời thành viên, gán quiz                  | UI lớp học           | Trung bình  | 1.200.000         |
 | F7  | Thống kê kết quả           | Theo quiz, theo lớp, hiển thị bảng điểm             | Bảng kết quả         | Trung bình  | 1.000.000         |
 | F8  | Thanh toán & phân quyền    | Stripe/Momo + quản lý gói Free/Paid                   | Form + logic         | Trung bình  | 1.200.000         |
@@ -81,7 +81,7 @@ flowchart TD
     C --> E[Nhập link tài liệu / YouTube]
 
     E --> F[Metadata + Submit tới AI backend]
-    F --> G[AI nội bộ (by Thầy Hùng)]
+    F --> G["AI nội bộ (by Thầy Hùng)"]
     G --> H[Nhận câu hỏi + preview chỉnh sửa]
     D --> H
 
@@ -119,9 +119,9 @@ flowchart TD
 - **Responsive Design Testing**: Kiểm tra ứng dụng trên nhiều thiết bị (mobile, tablet, desktop) bằng các công cụ như BrowserStack.
 - **UI/UX Testing**: Đánh giá giao diện tối giản, tinh gọn, thân thiện với người dùng mobile; thu thập feedback từ nhóm thử nghiệm.
 - **Unit & Integration Testing**: Áp dụng các framework như Jest, React Testing Library cho frontend và Mocha/Chai cho backend.
-- **Performance Testing**: Thực hiện load testing đặc biệt cho AI backend và API; đánh giá khả năng xử lý đồng thời nhiều request.
-- **Security Testing**: Kiểm tra xác thực (JWT, Role-based access), bảo mật dữ liệu và phòng chống tấn công (SQL injection, XSS, CSRF).
-- **Risk Simulation Testing**: Mô phỏng các kịch bản rủi ro (quá tải server, API rate-limit, thất thoát dữ liệu) để đảm bảo hệ thống xử lý lỗi và phục hồi nhanh chóng.
+- **Performance Testing**: Load testing cho AI backend và API, đảm bảo xử lý đồng thời nhiều request.
+- **Security Testing**: Kiểm tra xác thực (JWT, Role-based access), phòng chống các tấn công (SQL injection, XSS, CSRF).
+- **Risk Simulation Testing**: Mô phỏng các kịch bản rủi ro (quá tải, API rate-limit, thất thoát dữ liệu) để đảm bảo hệ thống phục hồi nhanh chóng.
 
 ---
 
@@ -135,7 +135,7 @@ flowchart TD
 
 ---
 
-## 9. SẴN SÀNG TRIỂN KHAI?
+## 9. TRIỂN KHAI
 
 > Xác nhận các chức năng ưu tiên để triển khai ngay:  
 > - Chọn phương thức thanh toán: **Trả theo chức năng** hay **Chia doanh thu**.  
